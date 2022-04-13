@@ -5,11 +5,11 @@ import ca.wilterson.patterns.patterns.converter.entity.User;
 
 public class UserConverter extends Converter<UserDto, User> {
 
-    private static AddressConverter addressConverter;
+    public static final UserConverter singleton = new UserConverter();
+    private static final AddressConverter addressConverter = AddressConverter.singleton;
 
-    public UserConverter() {
+    private UserConverter() {
         super(UserConverter::fromDto, UserConverter::fromEntity);
-        addressConverter = new AddressConverter();
     }
 
     private static UserDto fromEntity(User user) {

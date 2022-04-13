@@ -17,14 +17,28 @@ class UserConverterTest {
 
     @BeforeEach
     void setup() {
-        userConverter = new UserConverter();
+        userConverter = UserConverter.singleton;
     }
 
     @Test
     void convertUserDtoToUserEntity() {
-        var dtoUser = UserDto.builder().firstName("John").lastName("Doe").isActive(true).email("whatever@wherever.com").address(
-                AddressDto.builder().streetNumber(904).streetName("Whiteford Way").city("Kanata").province("Ontario").postalCode("K2M 0C9")
-                        .countryName("Canada").addressType(AddressType.RESIDENCIAL).build()).build();
+        var dtoUser = UserDto
+                .builder()
+                .firstName("John")
+                .lastName("Doe")
+                .isActive(true)
+                .email("whatever@wherever.com")
+                .address(AddressDto
+                        .builder()
+                        .streetNumber(904)
+                        .streetName("Whiteford Way")
+                        .city("Kanata")
+                        .province("Ontario")
+                        .postalCode("K2M 0C9")
+                        .countryName("Canada")
+                        .addressType(AddressType.RESIDENCIAL)
+                        .build())
+                .build();
 
         var user = userConverter.convertFromDto(dtoUser);
 
@@ -43,9 +57,22 @@ class UserConverterTest {
 
     @Test
     void convertUserEntityToDto() {
-        var user = User.builder().firstName("John").lastName("Doe").isActive(true).email("whatever@wherever.com").address(
-                Address.builder().streetNumber(904).streetName("Whiteford Way").city("Kanata").province("Ontario").postalCode("K2M 0C9").countryName("Canada")
-                        .addressType(AddressType.RESIDENCIAL).build()).build();
+        var user = User.builder()
+                .firstName("John")
+                .lastName("Doe")
+                .isActive(true)
+                .email("whatever@wherever.com")
+                .address(Address
+                        .builder()
+                        .streetNumber(904)
+                        .streetName("Whiteford Way")
+                        .city("Kanata")
+                        .province("Ontario")
+                        .postalCode("K2M 0C9")
+                        .countryName("Canada")
+                        .addressType(AddressType.RESIDENCIAL)
+                        .build())
+                .build();
 
         var userDto = userConverter.convertFromEntity(user);
 

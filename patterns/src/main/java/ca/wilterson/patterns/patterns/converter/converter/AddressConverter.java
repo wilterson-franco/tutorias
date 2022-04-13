@@ -5,7 +5,9 @@ import ca.wilterson.patterns.patterns.converter.entity.Address;
 
 public class AddressConverter extends Converter<AddressDto, Address> {
 
-    public AddressConverter() {
+    public static final AddressConverter singleton = new AddressConverter();
+
+    private AddressConverter() {
         super(AddressConverter::fromDto, AddressConverter::fromEntity);
     }
 
