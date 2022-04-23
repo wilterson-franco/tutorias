@@ -1,13 +1,14 @@
 package com.thehecklers.planefinder;
 
+import java.io.IOException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.io.IOException;
+import reactor.core.publisher.Flux;
 
 @Controller
 public class PlaneController {
+
     private final PlaneFinderService pfService;
 
     public PlaneController(PlaneFinderService pfService) {
@@ -16,7 +17,7 @@ public class PlaneController {
 
     @ResponseBody
     @GetMapping("/aircraft")
-    public Iterable<Aircraft> getCurrentAircraft() throws IOException {
+    public Flux<Aircraft> getCurrentAircraft() throws IOException {
         return pfService.getAircraft();
     }
 }
