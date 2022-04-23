@@ -3,17 +3,18 @@ package com.thehecklers.planefinder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.SneakyThrows;
-import org.springframework.stereotype.Service;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import lombok.SneakyThrows;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 
 @Service
 public class PlaneFinderService {
+
     private final PlaneRepository repo;
     private final FlightGenerator generator;
     private URL acURL;
@@ -24,11 +25,11 @@ public class PlaneFinderService {
         this.repo = repo;
         this.generator = generator;
 
-        acURL = new URL("http://192.168.1.139/ajax/aircraft");
+        acURL = new URL("http://localhost:7634/ajax/aircraft");
         om = new ObjectMapper();
     }
 
-    public Iterable<Aircraft> getAircraft() {
+    public Flux<Aircraft> getAircraft() {
         List<Aircraft> positions = new ArrayList<>();
 
         try {
@@ -59,7 +60,7 @@ public class PlaneFinderService {
         }
     }
 
-    private Iterable<Aircraft> saveSamplePositions() {
+    private Flux<Aircraft> saveSamplePositions() {
         final Random rnd = new Random();
 
         repo.deleteAll();
