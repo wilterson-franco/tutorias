@@ -1,6 +1,8 @@
 package com.thehecklers.planefinder;
 
 import java.io.IOException;
+import java.time.Duration;
+import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,5 +21,14 @@ public class PlaneController {
     @GetMapping("/aircraft")
     public Flux<Aircraft> getCurrentAircraft() throws IOException {
         return pfService.getAircraft();
+    }
+
+    @MessageMapping("acstream")
+    public Flux<Aircraft> getCurrentACStream() throws IOException {
+        return pfService
+                .getAircraft()
+                .concatWith(Flux
+                        .interval(Duration.ofSeconds(1))
+                        .flatMap(l -> pfService.getAircraft()));
     }
 }

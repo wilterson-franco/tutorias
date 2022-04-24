@@ -33,8 +33,7 @@ public class PlaneFinderService {
         List<Aircraft> positions = new ArrayList<>();
 
         try {
-            JsonNode aircraftNodes = om.readTree(acURL)
-                    .get("aircraft");
+            JsonNode aircraftNodes = om.readTree(acURL).get("aircraft");
 
             aircraftNodes.iterator().forEachRemaining(node -> {
                 try {
@@ -44,8 +43,7 @@ public class PlaneFinderService {
                 }
             });
         } catch (IOException e) {
-            System.out.println("\n>>> IO Exception: " + e.getLocalizedMessage() +
-                    ", generating and providing sample data.\n");
+            System.out.println("\n>>> IO Exception: " + e.getLocalizedMessage() + ", generating and providing sample data.\n");
             return saveSamplePositions();
         }
 
