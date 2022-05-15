@@ -6,4 +6,4 @@ spring:
     config:
       server:
         git:
-          uri:
+          uri: https://github.com/wilterson-franco/tutorias/tree/main/instructor-led/pluralsight/Java-Microservices-with-Spring-Cloud-Developing-Services/config-repo
