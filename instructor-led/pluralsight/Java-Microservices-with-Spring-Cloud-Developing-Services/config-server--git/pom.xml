@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.wilterson.tutorial</groupId>
-	<artifactId>configserver-files-ystem</artifactId>
+	<artifactId>configserver-git</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Sample Spring Cloud Config Server</name>
 	<description>Demo project for Spring Cloud Config Server</description>
