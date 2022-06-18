@@ -2,16 +2,30 @@ server:
   port: 8888
 
 spring:
+#  profiles:
+#    active: local
   cloud:
     config:
       server:
         git:
-          uri: https://github.com/wilterson-franco/config-server-repo
+          # You should use a server to host your
+          # configuration repositories in production.
+          # uri: https://github.com/wilterson-franco/config-server-repo
+
+          # Using the local filesystem for your git
+          # repository is intended for testing only.
+          uri: file://home/francow/dev/git/views/config-server-repo
           search-paths:
             - station*
           repos:
             perf:
               pattern: '*/perf'
-              uri: https://github.com/wilterson-franco/config-server-repo-perf
+              # You should use a server to host your
+              # configuration repositories in production.
+              # uri: https://github.com/wilterson-franco/config-server-repo-perf
+
+              # Using the local filesystem for your git
+              # repository is intended for testing only.
+              uri: file://home/francow/dev/git/views/config-server-repo-perf
               search-paths:
                 - station*
