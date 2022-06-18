@@ -1,0 +1,23 @@
+# Refer to Spring Cloud Config Server documentation:
+# https://cloud.spring.io/spring-cloud-config/multi/multi__spring_cloud_config_server.html
+
+spring:
+  application:
+    name: tollrates
+#  profiles:
+#    active: dev
+  cloud:
+    config:
+      server:
+        git:
+          # default repository, fall back for when none of the patterns below match
+          uri: file:/home/francow/dev/git/views/config-server-repo
+          search-paths:
+            - station*
+          repos:
+            perf:
+              # matches any {application}, but expects for a "perf" {profile}
+              pattern: '*/perf'
+              uri: https://github.com/wilterson-franco/config-server-repo-perf
+              search-paths:
+                - station*
